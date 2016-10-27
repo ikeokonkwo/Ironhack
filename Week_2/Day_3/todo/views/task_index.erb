@@ -1,0 +1,19 @@
+<h1> List of Tasks </h1>
+
+<p> 
+<% @tasks.each do |task| %>
+<li> <%= task.content %><%=task.complete?%> </li>
+<form method = "post" action = "/complete">
+<input type = "hidden" name = "the_id" value = "<%= task.id%>" > 
+
+<button type = "submit" name = "complete"> Complete </button>
+</form>
+<% end %>
+
+
+
+ </p>
+
+ <li> 
+ <a href = "/new_task"> Add New Task </a>
+ </li>
