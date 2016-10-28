@@ -2,7 +2,8 @@
 
 <p> 
 <% @tasks.each do |task| %>
-<li> <%= task.content %><%=task.complete?%> </li>
+<li> <%= task.content %> <%=task.complete?%> </li>
+
 <form method = "post" action = "/complete">
 <input type = "hidden" name = "the_id" value = "<%= task.id%>" > 
 
