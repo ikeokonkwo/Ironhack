@@ -1,0 +1,22 @@
+.box.blue {
+
+	background-color: #0074D9;
+}
+
+.box{
+	background-color: #FF4136;
+}
+
+.box.green.top{
+	background-color: #2ECC40;
+	position: absolute;
+	top: 350px;
+	left: 350px;
+}
+
+.box.blue.top{
+
+	position: absolute;
+	top: 400px; 
+	left: 500px;
+}

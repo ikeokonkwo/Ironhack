@@ -1,0 +1,77 @@
+body{
+	margin:0;
+}
+
+.logo {
+
+	position: absolute;
+	top:40px;
+	left: 50px;
+}
+
+
+.button {
+	border: 0px;
+	background-color: #e21221;
+	position: absolute;
+	top:50px;
+	right: 50px;
+	height:40px;
+	width: 135px;
+	font:"ProximaNova-Sbold.otf";
+	font-size:14px;
+	color: #FFFFFF
+}
+
+
+ .transbox{
+ 	color: #FFFFFF;
+ 	position: absolute;
+	top: 285px;
+	right: 335px;
+	text-align:center;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 435px;
+    width: 950px;
+    font:"ProximaNova-Light.otf";
+    font-size: 70px;
+ }
+
+
+.button2{
+	border: 0px;
+	color: #FDFFFF;
+	font: "ProximaNova-Light";
+	background-color: #469df6;
+	height:60px;
+	width: 330px;
+	position: absolute;
+	top: 530px;
+	left: 670px;
+	font-size: 20px;
+
+
+}
+
+
+.midsection {
+	height:400px;
+	width: 1280px;
+	background-color: #FFFFFF 
+	margin:0;
+
+}
+
+.posters{
+	position: absolute;
+	top: 970px;
+	margin-left: 10cm;
+	padding-right: 50px;
+}
+
+.bottom {
+	height: 100px;
+	width: 16000px;
+	background-color: #000100;
+}
+

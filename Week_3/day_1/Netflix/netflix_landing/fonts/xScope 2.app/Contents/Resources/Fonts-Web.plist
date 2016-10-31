@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+<string>AndaleMono</string>
+<string>ArialMT</string>
+<string>Arial-ItalicMT</string>
+<string>Arial-BoldMT</string>
+<string>Arial-BoldItalicMT</string>
+<string>Arial-Black</string>
+<string>ComicSansMS</string>
+<string>ComicSansMS-Bold</string>
+<string>CourierNewPSMT</string>
+<string>CourierNewPS-ItalicMT</string>
+<string>CourierNewPS-BoldMT</string>
+<string>CourierNewPS-BoldItalicMT</string>
+<string>Georgia</string>
+<string>Georgia-Italic</string>
+<string>Georgia-Bold</string>
+<string>Georgia-BoldItalic</string>
+<string>Impact</string>
+<string>TimesNewRomanPSMT</string>
+<string>TimesNewRomanPS-ItalicMT</string>
+<string>TimesNewRomanPS-BoldMT</string>
+<string>TimesNewRomanPS-BoldItalicMT</string>
+<string>TrebuchetMS</string>
+<string>TrebuchetMS-Italic</string>
+<string>TrebuchetMS-Bold</string>
+<string>Trebuchet-BoldItalic</string>
+<string>Verdana</string>
+<string>Verdana-Italic</string>
+<string>Verdana-Bold</string>
+<string>Verdana-BoldItalic</string>
+<string>Webdings</string>
+</array>
+</plist>

@@ -9,6 +9,7 @@ get "/home" do
 end 
 
 get "/search_results" do
+	@title = params[:keyword]
   the_search = Imdb::Search.new(params[:keyword])
   movies = the_search.movies
 

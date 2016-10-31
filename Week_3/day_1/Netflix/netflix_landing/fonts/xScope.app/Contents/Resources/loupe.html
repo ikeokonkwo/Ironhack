@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Tutorial</title>
+	<link href="style.css" media="screen" rel="Stylesheet" type="text/css" />
+	<link href="print.css" media="print" rel="Stylesheet" type="text/css" />
+</head>
+<body class="loupe">
+	<div id="wrapper">
+		<div id="header">
+			<h1 id="loupe">Loupe</h1>
+		</div>
+		
+		<div id="overview">
+			<p>
+				Get a pixel perfect closeup of your design.
+			</p>
+		</div>
+		
+		<div id="screenshot">
+<!-- TODO: replace screenshot with updated UI -->
+			<img src="graphics/screenshot_loupe.png" width="800" height="460" />
+		</div>
+		
+		<div id="details">
+			<p>
+				Sometimes, you've got to get things pixel perfect in a design. Like the days when layouts were done on acetate, it's essential to have a tool that lets you magnify your work. Enter the Loupe tool.
+			</p>
+			<p>
+				By default, the Loupe follows your mouse as you move it on screen, updating the popup with the color value underneath the pointer. You can quickly change the color format display by selecting another item in the popup menu. You can also toggle the <span class="button">Mouse / Magnifier</span> button to have the Loupe zoom the image underneath the tool (like a true magnifying glass.)
+			</p>
+			<p>
+				The magnification level of the Loupe starts out at 800%, but you can make it as little as 200% or as much as 1600% by using the Loupe menu. The keyboard shortcuts ⌘= and ⌘- can also be used.
+			</p> 
+			<ul class="options">
+				<li>
+					<h2>Sampling Colors</h2>
+					<p>
+						A common use for the Loupe tool is to collect colors from a design composition and use them in another context (like an HTML document.)
+					</p>
+					<p>
+						When you use the tool's ⌃⌥⌘C hot key, the current color will be copied to the clipboard and saved in a color palette at the bottom of the Loupe Options panel. After you have collected the colors you need, you can click on the items in the palette and the color value popup will update. You can also use ⌘C to copy the color to the clipboard.
+					</p>
+					<p>
+						The palette can be saved or loaded using an .ACO file: this file format is compatible with other design applications (like Photoshop.) To remove a color from the palette, select it and press the Delete key. The entire palette can be reset using the <span class="menuitem">Clear Color Palette</span> menu item.
+					</p>
+				</li>
+				<li>
+					<h2>Measuring Pixels</h2>
+					<p>
+						Another common task with the Loupe is measuring pixels: no one likes a button whose alignment is off by one.
+					</p>
+					<p>
+						To help with this, the Loupe allows you to draw a rectangle over the preview. The rectangle can measure offsets between objects or the width/height of an object. 
+					</p>
+					<p>
+						The <span class="menuitem">Freeze Display</span> (⌘D) and <span class="menuitem">Lock Position</span> (⌘L) items in the Loupe menubar can also help with measurement. When you freeze the Loupe, you get a snapshot of whatever is currently displayed. Locking the Loupe continues to update the display, but ignores any further mouse movements. The magnified image can also be copied to the clipboard using ⌃⌘C.
+					</p>
+					<p>
+						Locking is handy if you are making changes to a design and want to see an update without repositioning the mouse. A locked Loupe also helps when you are doing pixel measurements: preventing mouse movement makes it easier to drag the rectangle on the magnified pixels.
+					</p>
+					<p>
+						Another approach is to turn on <span class="button">Dimensions</span> in the Options panel. When turned on, measurements from the center of the Loupe are displayed along the left and top edges of the magnified image. This makes it much easier to check small distances.
+					</p>
+				</li>
+			</ul>
+			<p>
+				If you're working on a Mac with a small screen, you may find the <span class="menuitem">Avoid Mouse</span> option useful. When turned on, the Loupe window will automatically move away from the current mouse position. This helps when you are examining a large design&mdash;it keeps the Loupe's display out of the way.
+			</p>
+			<p>
+				The Loupe preference panel contains various options that let you format the color values according to your preferences. The default for hex colors is in lowercase with a hash mark. App colors default to the parameters used by UIColor.
+			</p>
+			<p>
+				A reference color can also be displayed in the Loupe using the <span class="menuitem">Reference Format</span> menu item. This allows you to work with a color in one format while viewing it in another. For example, you can work with hex colors in an HTML document while checking that the color value is the same as Photoshop's 0-255 RGB value.
+			</p>
+			<p>
+				Finally, like the <a href="screens.html">Screens</a> tool, the Loupe can simulate how colors will appear to users with vision defects. See that tool's help for more information on the different settings. The Loupe can also be configured to display with or without the grid or center lines.
+			</p>
+
+			<h2>Working Color Space</h2>
+			<p>
+				In version 4.1, the Loupe tool gained the ability to work with different color spaces using the <span class="menuitem">Working Color Space</span> item in the menubar. Many apps and development environments use color management, but unfortunately there's no standardization on the color space that's used. If you need accuracy when sampling, you'll need to pay attention to which space is being used by the app that's displaying the color.
+			</p>
+			<p>
+				The simplest way to explain this is with an example using Safari and Chrome. Both of these Mac apps use WebKit to render pages, but only Safari renders them using color management (in the <strong>sRGB</strong> color space.) Chrome presents the colors you specify in your code directly without any management.
+			</p>
+			<p>
+				When you specify a color in your HTML/CSS code, it will be transformed by Safari before being presented on the display. Sometimes, this color transformation will be slight and barely perceptible. At other times, it will be quite obvious. It all depends on how close the color is to the physical limits of the display (called its <a href="http://en.wikipedia.org/wiki/Gamut">gamut</a>.) Every display is different.
+			</p>
+			<p>
+				This means that if you use a color like <code>rgb(123,45,67)</code> in your HTML/CSS code, it may appear as <code>rgb(128,40,69)</code> when displayed in Safari. It can be confusing to see these color values that don't appear anywhere in your code.
+			</p>
+			<p>
+				After you tell xScope that you're looking at colors in the <strong>sRGB</strong> color space, it knows to apply a reverse transformation to correct the values. The end result is you'll see the color used in your source code, not the one that Safari converted for display.
+			</p>
+			<p>
+				Since every app supports color management differently, you'll need to adjust this setting depending on the type of work you're doing. The following table will help you set the <span class="menuitem">Working Color Space</span> menu item correctly:
+			</p>
+			<div class="container">
+				<table>
+					<tr>
+						<th class="app">Application</th>
+						<th>Working Color Space</th>
+					</tr>
+					<tr>
+						<td class="app">Safari</td>
+						<td>sRGB</td>
+					</tr>
+					<tr>
+						<td class="app">Preview</td>
+						<td>sRGB</td>
+					</tr>
+					<tr class="divider">
+						<td class="app">Chrome</td>
+						<td>Display&nbsp;RGB</td>
+					</tr>
+					<tr>
+						<td class="app">Firefox</td>
+						<td>Display&nbsp;RGB</td>
+					</tr>
+					<tr>
+						<td class="app">iOS&nbsp;Simulator</td>
+						<td>Display&nbsp;RGB</td>
+					</tr>
+					<tr class="divider">
+						<td class="app">Most&nbsp;other&nbsp;OS&nbsp;X&nbsp;apps</td>
+						<td>Generic&nbsp;RGB</td>
+					</tr>
+					<tr class="divider">
+						<td class="app">Photoshop</td>
+						<td>Various, see below</td>
+					</tr>
+					<tr>
+						<td class="app">Xcode</td>
+						<td>Various, see below</td>
+					</tr>
+				</table>
+			</div>
+			<p>
+				Previous versions of xScope always displayed color information in the <strong>Display RGB</strong> color space. Because of this, it's the default setting for the working color space.
+			</p>
+			<p>
+				The current display profile from <em>System Preferences > Display > Color</em> is also shown at the bottom of the menu. All colors sampled by the Loupe will be managed from this source color space. This information can be useful when you're trying to match your display color with another application (including Photoshop).
+			</p>
+			
+			<h3>Photoshop</h3>
+			<p>
+				Photoshop allows you to configure many different color spaces using its <em>Edit > Color Settings…</em> window. You'll need to make sure that the setting for <em>RGB</em> under <em>Working Spaces</em> matches the setting you've chosen for xScope.
+			</p>
+			<p>
+				Note that if you're using <strong>Monitor RGB</strong> as your color space in Photoshop, that's equivalent to xScope's <strong>Display RGB</strong>.
+			</p>
+
+			<h3>Xcode</h3>
+			<p>
+				If you're using Xcode to create apps, you'll need to use different color workflows depending on whether you're working on iOS or OS X. If you use the standard color picker to specify colors in Interface Builder, you'll need to pay attention to the color space being used. There is a gear icon next the <em>RGB Sliders</em> popup menu that lets you select the color space for any values that are entered from the panel.
+				
+			</p>
+			<p>
+				Since there is no color management on iOS, everything displayed on the device comes directly from code, a storyboard or .xib file. Internally, Xcode converts all colors entered in the color picker to <strong>Generic RGB</strong>. To avoid confusion, make sure you're using that same color space from the picker.
+			</p>
+			<p>
+				When you run your app in the iOS Simulator, the color values are displayed using the current display color profile (i.e. there is no color conversion, just like on the device.) You'll want to switch xScope's color space to <strong>Display RGB</strong> before sampling colors in the simulated app.
+			</p>
+			<p>
+				The Mac, on the other hand, has excellent color management. You can select any color space you'd like in the standard color picker, but if you want to check those colors with xScope, you'll need make sure <span class="menuitem">Working Color Space</span> matches what you've used in your code or visual editing tools.
+			</p>
+			<p>
+				Colors specified using NSColor's <code>-colorWithCalibratedRed:green:blue:alpha:</code> will be in the <strong>Generic RGB</strong> color space. If you use <code>-colorWithSRGBRed:green:blue:alpha:</code> instead, colors will be displayed in the <strong>sRGB</strong> color space.
+			</p>
+		</div>
+
+		<div id="footer">
+			<p>
+				Return to the <a href="home.html">index</a> or proceed to the next tool: <a href="guides.html">Guides</a>
+			</p>
+		</div>
+	</div>
+</body>
+</html>
