@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Tutorial</title>
+	<link href="style.css" media="screen" rel="Stylesheet" type="text/css" />
+	<link href="print.css" media="print" rel="Stylesheet" type="text/css" />
+</head>
+<body class="retina">
+	<div id="wrapper">
+		<div id="header">
+			<h1 id="general">xScope and the Retina Display</h1>
+		</div>
+		
+		<div id="details">
+			<p>
+This version of xScope fully supports the Retina display. One of the great things about the Retina display is that you can no longer see pixels. Yet at the same time, pixel precision in user interfaces is as important as ever. This section will help you understand this dichotomy and how it relates to xScope.
+			</p>
+			<p>
+If you're a long time user of xScope, you may be surprised at how little the app has changed on the surface. There is now a General preference setting that lets you choose "Screen pixels" or "Window points" for the units that are displayed by the xScope tools.
+			</p>
+			
+			<div class="figure">
+				<img src="graphics/figure_retinapref.png" width="521" height="68" />
+				<p>xScope's Retina preference setting</p>
+			</div>
+			<p>
+When points are selected, all measurements are displayed with a decimal point. Pixel measurements never show a decimal point. When space permits, <strong>pt</strong> or <strong>px</strong> is also displayed.
+			</p>
+			<p>
+But under that surface there are a lot of subtle details. Read on to learn how <a href="#scaling">the screen is scaled</a> with different Display settings, how xScope <a href="#alignment">shows the alignment of single pixels</a>, how there are issues with <a href="#mouse">precise mouse movement</a>, and how the tools <a href="#mixed">handle multiple display resolutions</a>.
+			</p>
+
+			<a id="scaling"></a>
+			<h2>What You See Isn't Necessarily What You Get</h2>
+			<p>
+When xScope works with pixels, it works in the resolution of the display buffer. With the default Display preference in System Preferences (labelled <span class="menuitem">Best</span>) this pixel buffer is 2880 x 1800 which is two pixels for each point on the 1440 x 900 screen. With this setting, each pixel in the Loupe is displayed on screen.
+			</p>
+			<p>
+However, when <span class="menuitem">More Space</span> is selected the screen size increased to 1920 x 1200 points it uses a 3840 x 2400 pixel buffer (two pixels for every point.) But the screen buffer only has 2880 x 1800 pixels, so the 3840 x 2400 pixels get scaled down by 66.6% to fit into the pixels available on the screen. Anyone who's worked with Photoshop knows that some pixels are going to get lost in this process. The good news is that it's hard to tell these pixels have gone missing.
+			</p>
+			<p>
+Traditionally, xScope has displayed exactly what's on screen. That's no longer true: it displays what's on the screen before it gets scaled down. In the example above, the Loupe will display the contents of the 3840 x 2400 pixel buffer, not the contents of the 2880 x 1800 screen buffer. This also applies to everything else that relies on what is displayed on screen. 
+			</p>
+			<p>
+At first, it may be confusing to see xScope report screen locations that aren't on the physical display, but it's handy to have a Loupe that can view and check graphics before they're scaled. It also allows consistent edge snapping (using the Control key while dragging) and the ability to do screen shots at full Retina resolution.
+			</p>
+			
+			<a id="alignment"></a>
+			<h2>Two Pixels for the Price of One</h2>
+			<p>
+There are many cases where xScope reports a single pixel value, but displays two pixels for the measurement. It's really hard to see a single Retina pixel, so two are used instead. A good example of this are the Guides and Frames.
+			</p>
+			<p>
+The question is then which pixel of those two being displayed is the right one? xScope always measures a single pixel at the top or left edge of the two pixel line. For example, a horizontal guide positioned at 123 pixels will show the 123rd pixel on the top edge of the guide. Similarly, the width and height of a frame is displayed at the right and bottom edge of the two pixel line.
+			</p>
+			<p>
+If you need some help getting used to this convention, try displaying the Ruler and turning on the position indicators. Each tick on the ruler is two pixels wide and the position indicator reports the exact pixel location (you'll probably want to turn on the Loupe so you can see the pixel you're pointing at!) Even pixels will always be on the top or left of the two pixel line, while odd pixels are on the bottom or right.
+			</p>
+
+			<a id="mouse"></a>
+			<h2>The Mouse Isn't Retina Ready</h2>
+			<p>
+As you use xScope, you'll find some things are incredibly hard to do with the mouse. Unfortunately, Apple hasn't made mouse movement as precise as the display yet. For the gory details about what's wrong, there's this <a href="http://www.openradar.me/11905408">Radar bug report</a>. The short version is that the mouse movement is only reported in full screen points (two pixels on a Retina display.) Effectively, that means you can only point at every other pixel.
+			</p>
+			<p>
+To work around this, many of the tools can use the keyboard for precise positioning. A good example is the Loupe: say you want to measure the color of a single pixel on a screen comp but can't get your mouse to hover over that pixel. The solution is to select the Loupe, position the mouse pointer near where you want to be, and then use the keyboard arrows to finish the journey.
+			</p>
+			<p>
+The Rulers, Guides and Frames behave the same way: the arrow keys adjust the location by a single pixel. In addition, you can use the Option key along with the arrows to adjust the size of a Ruler and Frame by a single pixel.
+			</p>
+
+			<a id="mixed"></a>
+			<h2>Everything's Not Coming Up Retina</h2>
+			<p>
+If you've used the Retina display for more than five seconds, you already know it's awesome. But many of you have become accustomed to working on multiple displays. Since there aren't yet external displays that support the double resolution, that means you'll be working with the xScope tools at both 1x and 2x.
+			</p>
+			<p>
+xScope supports secondary screens as it always has, but there are some things to note when working with mixed resolutions:
+			</p>
+			<ul>
+				<li>
+Guides and Frames default configuration is to span multiple displays. With this setting, xScope will display the items using the lowest resolution supported amongst those screens. If you're using both a Retina and lower resolution secondary display, the guides and frames will be displayed on the Retina screen at low resolution. You can fix this by setting either the right or left display for the <span class="menuitem">Display guides and frames</span> setting in xScope's General preference panel.
+				</li>
+				<li>
+The Rulers are displayed in the resolution of the screen that they cover the most of. Generally, as you move the origin of the ruler onto a new screen it will switch, but since the window also includes some padding (for rotation and other display configurations) it doesn't follow the standard "half on, half off" rule for traditional windows.
+				</li>
+				<li>
+The Loupe will sample at the maximum resolution for area being magnified. This means that if part of the Loupe is touching the Retina display, all pixels will be displayed at 2x. This includes pixels from a non-Retina display which will be up-sampled.
+				</li>
+				<li>
+Screens only work in points since normal OS X windows (such as a browser or the iOS Simulator) use this coordinate system. When you specify a screen size as 320 x 480, it will be displayed as 640 x 960 pixels on a Retina display and 320 x 480 pixels on a normal display.
+				</li>
+				<li>
+Since the Overlay tool is designed to work with web browsers, it's measurements are displayed as "pixels" even though they're really window "points". In a browser that has <code>window.devicePixelRadio == 2</code>, a value of <code>10px</code> will use 20 pixels on the display. xScope shows the measurement as 10 pixels since that's what will be used in HTML and CSS markup.
+				</li>
+			</ul>
+		</div>
+
+		<div id="footer">
+			<p>
+				Return to the <a href="home.html">index</a>
+			</p>
+		</div>
+	</div>
+</body>
+</html>

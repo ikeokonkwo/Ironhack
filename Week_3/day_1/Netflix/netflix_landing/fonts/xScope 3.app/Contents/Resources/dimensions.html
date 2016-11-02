@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Tutorial</title>
+	<link href="style.css" media="screen" rel="Stylesheet" type="text/css" />
+	<link href="print.css" media="print" rel="Stylesheet" type="text/css" />
+</head>
+<body class="dimensions">
+	<div id="wrapper">
+		<div id="header">
+			<h1 id="dimensions">Dimensions</h1>
+		</div>
+		
+		<div id="overview">
+			<p>
+				Check the sizes of existing designs faster than you ever thought possible.
+			</p>
+		</div>
+		
+		<div id="screenshot">
+			<img src="graphics/screenshot_dimensions.png" width="800" height="460" />
+		</div>
+		
+		<div id="details">
+			<p>
+				The Dimensions tool works by sending out "laser beams" that analyze the pixels underneath the mouse cursor. If a solid block of color is detected, surrounding pixels are checked until a different color is found. This mode works very well on layouts that are based on solid colors. 
+			</p>
+			<p>
+				For layouts that use photos and other elements with a large variety of colors, the tool looks for a boundary that uses similar colors. Since most photos are surrounded by some kind of border, this technique works well for detecting the edge.
+			</p>
+			<p>
+				All other layouts use a custom algorithm that simulates human vision. In this mode, every pixel is analyzed against the neighboring pixels. If there is a change in the intensity of a pixel with respect to those surrounding it, it's considered an edge.
+			</p>
+			<div class="tip">
+				<h2>Adjusting Edge Sensitivity</h2>
+				<p>
+					xScope default edge sensitivity setting detects most edges well. Some layouts, such as those with many gradients or noisy pattern elements will need a sensitivity adjustment. This can be done in the Dimensions panel of xScope preferences.
+				</p>
+				<p>
+					As you move the slider between the Low and High values, the Preview will show which edges are detected. The white lines indicate where the laser beam will stop when you measure the screen. Two parallel lines indicate a soft edge (e.g. a light gray line on a white background). A single line indicates a hard edge (e.g. a dark gray box on a white background). Only horizontal and vertical edges are checked and displayed.
+				</p>
+				<p>
+					Below the Preview there are some controls to modify its behavior. By default, the display shows the edges under the preferences window. If you'd like to use another part of the screen, click the target icon to choose a new position. Initially both the screen image and edges are displayed together: use the selector to view them independently.
+				</p>
+			</div>
+			<p>
+				If you need to know the aspect ratio of a measurement, you can enable <span class="menuitem">Display Aspect Ratio</span> under Dimensions in the menubar.
+			</p>
+			<p>
+				Once you have made a measurement with the laser beam, you can create a frame or guides with the current measurement, use ⇧⌘6 or ⇧⌘8. The global hot key ⇧⌘7 can also be used to take a screen shot.
+			</p>
+			<div class="tip">
+				<h2>Hot Key Setup</h2>
+				<p>
+					The default hot keys were chosen for their similarity to the hot keys used to take screen shots in Mac OS X. All of the keys mentioned above can be in xScope's preferences.
+				</p>
+			</div>
+
+		</div>
+
+		<div id="footer">
+			<p>
+				Return to the <a href="home.html">index</a> or proceed to the next tool: <a href="rulers.html">Rulers</a>
+			</p>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+vec4 Convolution3by3(sampler src,
+							float ox, float oy,
+							float r00, float r01, float r02,
+							float r10, float r11, float r12,
+							float r20, float r21, float r22)
+{
+	vec2 loc;
+	vec4 result = vec4(0,0,0,0);
+	//0,0 in my mind is left and up.
+	
+	loc = vec2(-1.0 + ox, 1.0 + oy);
+	vec4 p00 = unpremultiply(sample(src, (samplerCoord(src) + loc) ));
+	result.rgb = p00.rgb * r00;
+	
+	loc = vec2(0.0 + ox, 1.0 + oy);
+	vec4 p01 = unpremultiply(sample(src, (samplerCoord(src) + loc) ));
+	result.rgb += p01.rgb * r01;
+	
+	loc = vec2(1.0 + ox, 1.0 + oy);
+	vec4 p02 = unpremultiply(sample(src, (samplerCoord(src) + loc) ));
+	result.rgb += p02.rgb * r02;
+	
+	loc = vec2(-1.0 + ox, 0.0 + oy);
+	vec4 p10 = unpremultiply(sample(src, (samplerCoord(src) + loc) ));
+	result.rgb += p10.rgb * r10;
+	
+	loc = vec2(0.0 + ox, 0.0 + oy);
+	vec4 p11 = unpremultiply(sample(src, (samplerCoord(src) + loc) ));
+	result.rgb += p11.rgb * r11;
+	
+	loc = vec2(1.0 + ox, 0.0 + oy);
+	vec4 p12 = unpremultiply(sample(src, (samplerCoord(src) + loc) ));
+	result.rgb += p12.rgb * r12;
+	
+	loc = vec2(-1.0 + ox, -1.0 + oy);
+	vec4 p20 = unpremultiply(sample(src, (samplerCoord(src) + loc) ));
+	result.rgb += p20.rgb * r20;
+	
+	loc = vec2(0.0 + ox, -1.0 + oy);
+	vec4 p21 = unpremultiply(sample(src, (samplerCoord(src) + loc) ));
+	result.rgb += p21.rgb * r21;
+	
+	loc = vec2(1.0 + ox, -1.0 + oy);
+	vec4 p22 = unpremultiply(sample(src, (samplerCoord(src) + loc) ));
+	result.rgb += p22.rgb * r22;
+	
+	result.a = 1.0;
+	result = premultiply( result );
+	return result;
+}
+
+vec4 Gx (sampler src, float offsetx, float offsety)
+{
+	vec4 result = Convolution3by3(src, offsetx, offsety, -1.0, 0.0, 1.0, -2.0, 0.0, 2.0, -1.0, 0.0, 1.0);
+	return result;
+}
+
+vec4 Gy (sampler src, float offsetx, float offsety)
+{
+	vec4 result = Convolution3by3(src, offsetx, offsety, 1.0, 2.0, 1.0, 0.0, 0.0, 0.0, -1.0, -2.0, -1.0);
+	return result;
+}
+
+kernel vec4 Gradient (sampler src)
+{
+	vec4 Gx = Gx(src, 0.0, 0.0);
+	vec4 Gy = Gy(src, 0.0, 0.0);
+
+	float mag = sqrt((Gx.r * Gx.r) + (Gy.r * Gy.r));
+
+/*
+	vec4 Gxv1 = Gx(src, 1.0, 0.0);
+	vec4 Gyv1 = Gy(src, 1.0, 0.0);
+	vec4 Gxv2 = Gx(src, -1.0, 0.0);
+	vec4 Gyv2 = Gy(src, -1.0, 0.0);
+	
+	vec4 Gxh1 = Gx(src, 0.0, 1.0);
+	vec4 Gyh1 = Gy(src, 0.0, 1.0);
+	vec4 Gxh2 = Gx(src, 0.0, -1.0);
+	vec4 Gyh2 = Gy(src, 0.0, -1.0);
+	
+	float magv1 = sqrt((Gxv1.r * Gxv1.r) + (Gyv1.r * Gyv1.r));
+	float magv2 = sqrt((Gxv2.r * Gxv2.r) + (Gyv2.r * Gyv2.r));
+	float magh1 = sqrt((Gxh1.r * Gxh1.r) + (Gyh1.r * Gyh1.r));
+	float magh2 = sqrt((Gxh2.r * Gxh2.r) + (Gyh2.r * Gyh2.r));
+	
+	float magv = max(magv1, magv2);
+	float magh = max(magh1, magh2);
+*/
+	
+	float red = 0.0;
+	float green = 0.0;
+	float blue = 0.0;
+	float alpha = 1.0;
+	if (false) {
+		// colorize (testing)
+		float pi = radians(180.0);
+		float theta = atan(Gy.r, Gx.r); // -pi to pi
+		
+		red = clamp(sin(theta) * mag, 0.0, 1.0);
+		green = clamp(cos(theta) * mag, 0.0, 1.0);
+		blue = clamp(cos(theta + (pi / 2.0)) * mag, 0.0, 1.0);
+	}
+	else {
+		float theta_degrees = degrees(atan(Gy.r, Gx.r)) + 180.0; // 0 .. 360 degrees
+		float theta_offset = (theta_degrees + 22.5); // 22.5 .. 382.5 degrees
+		float theta_quadrant = floor(theta_offset / 45.0); // 0 .. 7
+		float theta_index = mod(theta_quadrant, 4.0); // 0 .. 3
+		float theta_prime = theta_index * 45.0; // 0, 45, 90, 135 degrees
+		
+		//theta_prime = mod(theta_degrees, 180.0);
+		
+		if (false) {
+			if (true) {
+				float theta_val = theta_index / 3.0;
+				red = (theta_val) * mag;
+				green = ((theta_val + (1.0 / 3.0)) - floor(theta_val + (1.0 / 3.0))) * mag;
+				blue = ((theta_val + (2.0 / 3.0)) - floor(theta_val + (2.0 / 3.0))) * mag;
+			}
+			else {
+				red = mag;
+				green = mag;
+				blue = mag;
+			}
+		}
+		else {
+			red = theta_prime / 255.0;
+			green = mag;
+/*
+			blue = magv;
+			alpha = magh;
+*/
+		}
+	}
+	
+	return vec4(red, green, blue, alpha);
+}
+

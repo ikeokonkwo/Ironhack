@@ -2,7 +2,7 @@ body{
 	margin:0;
 }
 
-.logo {
+.logo{
 
 	position: absolute;
 	top:40px;
@@ -41,7 +41,7 @@ body{
 .button2{
 	border: 0px;
 	color: #FDFFFF;
-	font: "ProximaNova-Light";
+	font: "ProximaNova-Light.otf";
 	background-color: #469df6;
 	height:60px;
 	width: 330px;
@@ -50,9 +50,16 @@ body{
 	left: 670px;
 	font-size: 20px;
 
-
 }
 
+
+.newreleases{
+	position: absolute;
+	top:970px;
+	font-size: 40px;
+	font:"ProximaNova-Sbold.otf";
+	left: 170px;
+}
 
 .midsection {
 	height:300px;
@@ -65,9 +72,15 @@ body{
 .posters{
 position: absolute;
 top: 1000px;
+left: 100px;
 padding:20px;
-margin-left: 200px;
-margin-right: 20px;
+display:inline-block;
+
+}
+
+.posters li{
+	margin: 25px;
+	display:inline-block;
 }
 
 .bottom {
@@ -75,6 +88,6 @@ margin-right: 20px;
 	height: 100px;
 	width: 16000px;
 	background-color: #000100;
-	top: 1800px;
+	bottom: -500px;
 }
 
