@@ -55,7 +55,7 @@ body{
 
 
 .midsection {
-	height:400px;
+	height:300px;
 	width: 1280px;
 	background-color: #FFFFFF 
 	margin:0;
@@ -63,15 +63,18 @@ body{
 }
 
 .posters{
-	position: absolute;
-	top: 970px;
-	margin-left: 10cm;
-	padding-right: 50px;
+position: absolute;
+top: 1000px;
+padding:20px;
+margin-left: 200px;
+margin-right: 20px;
 }
 
 .bottom {
+	position: absolute;
 	height: 100px;
 	width: 16000px;
 	background-color: #000100;
+	top: 1800px;
 }
 

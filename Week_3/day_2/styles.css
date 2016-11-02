@@ -1,0 +1,28 @@
+code {
+	background-color:#2db34a;
+	border-radius: 6px;
+	color: #FFF;
+	display: block;
+	padding: 24px 15px;
+	text-align: center;
+}
+img{
+width:300px;
+height: 300px;
+float: right;
+}
+
+header,
+section,
+aside,
+footer {
+	margin:0 1.5% 24px 1.5%;
+	border: 1px solid black;
+}
+
+section{
+	position: absolute;
+	bottom: 500px;
+	right: 580px;
+
+}
