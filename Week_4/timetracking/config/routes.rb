@@ -4,4 +4,10 @@ Rails.application.routes.draw do
 
 get "/about", to: "site#about"
 get "/contact", to: "site#contact"
+get'/say_name/:name', to: 'site#say_name'
+
+
+get "/calculator", to: "calculator#add_form"
+post "/calculate", to: "calculator#process_addition"
+
 end
