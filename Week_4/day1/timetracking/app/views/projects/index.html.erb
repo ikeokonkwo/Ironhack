@@ -1,10 +1,16 @@
 <ul>
 <% @projects.each do |project| %>
-	<li><%= project.name %>
+	<li>
+	<%= link_to project.name, "/projects/#{project.id}" %>
+	<!-- <a href="/projects/7777"> Papa John's Virtual Pizza </a> -->
+	
 	<% if project.description.present? %>
 	- <%= project.description%></li>
 
 	<%end%>
+	</li>
 	<%end%>
 
 </ul>
+
+<%= link_to "Create a new project", projects_new_path %>
