@@ -16,3 +16,16 @@ ProjectG = Project.create!(name: "KidsContigo")
 ProjectH = Project.create!(name: "ElonMuskMars")
 ProjectI = Project.create!(name: "Patagonia")
 ProjectJ = Project.create!(name: "Nike")
+
+TimeEntry.create!(hours: 2, minutes:30, comments:"blah", Date.today, projectA.id)
+TimeEntry.create!(hours: 2, minutes:30, comments:"blah", Date.today, projectA)
+
+	projectA.time_entries.create!(hours: 2, minutes:30, comments:"blah", date: Date.today)
+
+projectC.time_entries.create!(hours: 3, minutes:45, comments:"Wendys Stuff", date: Date.today)
+projectC.time_entries.create!(hours: 6, minutes:45, comments:"Wendys App", date: Date.today - 3.days)
+projectC.time_entries.create!(hours: 1, minutes:0, comments:"Wendys App", date: Date.today - 5.days)
+
+projectD.time_entries.create!(hours: 3, minutes:45, comments:"PapaJohns Stuff", date: Date.today)
+projectE.time_entries.create!(hours: 6, minutes:45, comments:"BudoVideos App", date: Date.today - 6.days)
+projectF.time_entries.create!(hours: 1, minutes:0, comments:"PoloRL App", date: Date.today - 10.days)
