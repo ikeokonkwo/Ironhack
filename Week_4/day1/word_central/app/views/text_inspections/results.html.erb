@@ -1,0 +1,23 @@
+Your Results: 
+<%= @text %>
+<%= @word_count%>
+
+<strong>
+<br> Average reading time: </br>
+
+
+<div>
+<%reading_time = @word_count/275%>
+		<% if @word_count<= 275 %>
+		your estimated reading time is less than 1 minute
+		<% else %>
+		your estimated  reading time is: <%= reading_time %>
+		<% end  %>
+
+
+
+</div>
+</strong>
+
+
+<li> <%= link_to 'Home', "/" %> </li>

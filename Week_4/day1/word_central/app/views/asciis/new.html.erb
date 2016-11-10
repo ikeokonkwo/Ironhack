@@ -1,0 +1,13 @@
+<form action="/ascii" method="post">
+
+  <div>
+    <label for="text_ascii">Text</label>
+
+    <textarea name="text_ascii[user_text]" id="ascii_text">
+    </textarea>
+     
+  </div>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <button type="submit">Submit text</button>
+</form>

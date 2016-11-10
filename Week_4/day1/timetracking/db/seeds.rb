@@ -6,19 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-ProjectA = Project.create!(name: "Ironhack")
-ProjectB = Project.create!(name: "PfChangs", description:"jscbjkn" )
-ProjectC = Project.create!(name: "Wendys")
-ProjectD = Project.create!(name: "PapaJohns")
-ProjectE = Project.create!(name: "BudoVideos")
-ProjectF = Project.create!(name: "PoloRL")
-ProjectG = Project.create!(name: "KidsContigo")
-ProjectH = Project.create!(name: "ElonMuskMars")
-ProjectI = Project.create!(name: "Patagonia")
-ProjectJ = Project.create!(name: "Nike")
+projectA = Project.create!(name: "Ironhack")
+projectB = Project.create!(name: "PfChangs", description:"jscbjkn" )
+projectC = Project.create!(name: "Wendys")
+projectD = Project.create!(name: "PapaJohns")
+projectE = Project.create!(name: "BudoVideos")
+projectF = Project.create!(name: "PoloRL")
+projectG = Project.create!(name: "KidsContigo")
+projectH = Project.create!(name: "ElonMuskMars")
+projectI = Project.create!(name: "Patagonia")
+projectJ = Project.create!(name: "Nike")
 
-TimeEntry.create!(hours: 2, minutes:30, comments:"blah", Date.today, projectA.id)
-TimeEntry.create!(hours: 2, minutes:30, comments:"blah", Date.today, projectA)
+TimeEntry.create!(hours: 2, minutes:30, comments:"blah", date: Date.today, project_id: projectA.id)
+
 
 	projectA.time_entries.create!(hours: 2, minutes:30, comments:"blah", date: Date.today)
 
