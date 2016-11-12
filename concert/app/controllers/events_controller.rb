@@ -13,7 +13,11 @@ class EventsController < ApplicationController
 	end 
 	def create 
 		@my_event = Event.new(
-			:name => params[:event][:name],
+			:artist => params[:event][:artist],
+			:venue => params[:event][:venue],
+			:city => params[:event][:city],
+			:date => params[:event][:date],
+			:price => params[:event][:price],
 			:description => params[:event][:description])
 		@my_event.save
 		redirect_to events_path(@my_event)
