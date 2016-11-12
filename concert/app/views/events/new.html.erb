@@ -1,0 +1,21 @@
+<h1>Add Concerts Here! </h1>
+
+<br> 
+<br>
+<%= form_for @my_event do |f| %>
+	<%=f.label :name %>
+	<%=f.text_field :name %>
+<br>
+<br>
+	<%=f.label :description %>
+	<%=f. text_area :description %>
+
+	<%= f.button %>
+
+<br>
+<br>
+
+<%= link_to "Home", events_path %>
+<%end %>
+
+

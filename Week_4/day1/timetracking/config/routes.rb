@@ -31,6 +31,8 @@ post "/projects/:project_id/time_entries", to: "time_entries#create", as: "proje
 get "/projects/:project_id/time_entries/:id/edit", to: "time_entries#edit", as: "edit_project_time_entry"
 patch "/projects/:project_id/time_entries/:id", to: "time_entries#update", as: "project_time_entry"
 
+delete "/projects/:project_id/time_entries/:id", to: "time_entries#destroy"
+
 
 
 
