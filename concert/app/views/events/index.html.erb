@@ -1,16 +1,56 @@
-<h1> Welcome to Music Concert Network </h1>
-<br>
-<br>
+<div class="main">
+
+	<h2> Home  </h2>
+
+	<h3> All Concerts </h3>
+		<ul>
+			<% @my_event.each do |event| %>
+				<li>
+					<%= event.artist %>
+					<% if event.description.present? %>
+					-<%= link_to "See Details", "/events/#{event.id}"%>
+					<%end%>
+				</li>
+				<%end%>
+		</ul>
+
+	<br>
+	<br>
+
+	<h3> Concerts Happening Today: </h3>
 	<ul>
-	<% @my_event.each do |event| %>
-		<li>
-			<%= event.artist %>
-			<% if event.description.present? %>
-			-<%= link_to "See Details", "/events/#{event.id}"%>
+		<% @my_event.each do |event| %>
+			
+			<% if event.date == Date.today %>
+				<%= event.artist %>
+				-<%= link_to "See Details", "/events/#{event.id}"%>
 			<%end%>
-		</li>
+			
 		<%end%>
 	</ul>
+	<br>
+	<br>
+		 <h4><%= link_to "Add a concert", new_event_path%></h4>
 
-<br>
-<%= link_to "Add a concert", new_event_path%>
+
+
+<div class ="bar">
+	<h3>Events later this month:</h3>
+ 	<select>
+		<% @my_event.each do |event| %>
+			<% if  Date.today <= event.date && event.date < Date.today.end_of_month %>
+				  <option>
+				  <%= event.artist %>				
+				  </option>
+				<%end%>
+		<%end%>
+	 </select>
+
+
+ </div>
+
+
+
+
+
+</div>

@@ -1,7 +1,15 @@
-<h2> Concert Details </h2>
-<%= @my_event.artist %> 
-<%= @my_event.venue %> 
-<%= @my_event.city %> 
-<%= @my_event.date %> 
-<%= @my_event.price %> 
-<%= @my_event.description %> 
+<div class="concert">
+
+<h3> Concert Details </h3>
+Artist: <%= @my_event.artist %> 
+<br>
+Venue: <%= @my_event.venue %> 
+<br>
+City: <%= @my_event.city %>
+<br> 
+Date: <%= @my_event.date %> 
+<br>
+Ticket price:$<%= @my_event.price %>
+<br> 
+Event Description:<%= @my_event.description %> 
+</div>
