@@ -1,44 +1,34 @@
 class UsersController < ApplicationController
+before_action :check_if_logged_in, only: [:show, :index]
+before_action :check_if_admin, only: [:index]
+before_action :get_current_user, only: [:home, :show]
 
   # renders the home page
-def home
-  @current_user = User.find_by(id: session[:user_id])
 
-    if @current_user == nil
-      @name = "Ironhacker"
-    else 
-      @name = @current_user.username
+  def home
+    render :home
+  end 
+
+  def index 
+   @users = User.all
+   render :index
+
   end
-end 
 
-  def index
-    if session[:user_id]
-      @users = User.all
-      render :index
-
-    else 
-      redirect_to "/login"
-  end
-end 
 
   # renders the signup form
   def new
     if session[:user_id]
+      flash[:login_success] = "You already have an account"
       redirect_to "/"
     else
       render :new
     end
   end  
-  
+
 
   def show
-    if session[:user_id]
-    get_current_user
     render :show
-
-    else 
-      redirect_to "/login"
-    end
   end 
 
 
@@ -58,16 +48,13 @@ end
      params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
 
-  def get_current_user 
-      @current_user = User.find_by(id: session[:user_id])
+  def check_if_logged_in 
+    if session[:user_id] == nil
+    flash[:need_to_login_message] = "You need to login to see this page"
+      redirect_to "/"
 
-      if @current_user ==nil 
-        @name = "Ironhacker"
-      else 
-          @name = @current_user.username
-        end
+     end
   end
-
 end 
 
 
