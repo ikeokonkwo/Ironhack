@@ -11,8 +11,9 @@ def get_current_user
         @name = "Ironhacker"
       else 
           @name = @current_user.username
-        end
+      end
   end
+  
     def check_if_logged_in 
     if session[:user_id] == nil
     flash[:need_to_login_message] = "You need to login to see this page"

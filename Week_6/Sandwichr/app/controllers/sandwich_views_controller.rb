@@ -1,4 +1,5 @@
 class SandwichViewsController < ApplicationController
+	before_action :authenticate_user!
 	def index
 		@sandwiches = Sandwich.all
 		render :home
@@ -6,6 +7,7 @@ class SandwichViewsController < ApplicationController
 
 	def show
 		@sandwich = Sandwich.find(params[:id])
-		@ingredients =Ingredient.all
+		@ingredients = Ingredient.all
+		render :show
 	end
 end

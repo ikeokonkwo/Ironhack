@@ -7,7 +7,6 @@ $(document).ready(function(){
 		var url = `/api/sandwiches/${sandId}/ingredients/add`;
 		var id = $(this).data("ingredient");
 		console.log(id);
-
 		$.ajax({
 			type: "POST",
 			url: url,
@@ -22,11 +21,12 @@ $(document).ready(function(){
 function doTheThing(response){
 	console.log("SUCCESS!!!");
 	console.log(response);
+
 	var html = `<li> ${response.name}</li>`;
 	var totsCals = $(".js-cals").data("cals");
 	console.log(`totsCals ${totsCals}`);
 	var cals = response.calories + totsCals;
-	$(".js-cals").data(cals);
+	$(".js-cals").data("cals", cals);
 	$(".js-cals").text(cals);
 	$(".js-ingredients-list").append(html);
 }
