@@ -6,9 +6,26 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel='shortcut icon' type='image/x-icon' href='/assets/revised-logo.png' />
   </head>
 
-  <body class="text-center bg-info">
+  <body>
+
+<nav class="navbar navbar-inverse navbar-toggleable-sm" style="background-color: #091657">
+	<div class="container">
+		<a class="navbar-brand" href="#">
+			<img src="/assets/revised-logo.png" style="width: 70px;" alt="Logo">
+		</a>
+		
+		<div class = "navbar-nav">
+			<a class="nav-item nav-link active" href='#'>Chatbot</a>
+			<a class="nav-item nav-link disabled" href='#'>EHR Builder</a>
+			<a class="nav-item nav-link disabled" href='#'>Tutorials</a>
+		</div>
+	</div>
+</nav>
+
     <%= yield %>
   </body>
 </html>
