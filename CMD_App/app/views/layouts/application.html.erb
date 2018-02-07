@@ -19,9 +19,21 @@
 		</a>
 		
 		<div class = "navbar-nav">
-			<a class="nav-item nav-link active" href='#'>Chatbot</a>
+			<a class="nav-item nav-link active" href='/'>Chatbot</a>
 			<a class="nav-item nav-link disabled" href='#'>EHR Builder</a>
 			<a class="nav-item nav-link disabled" href='#'>Tutorials</a>
+
+			<% if user_signed_in? %>
+				<a class="nav-item nav-link active" href='/users/edit'>Edit registration</a>
+  			<% else %>
+  				<a class="nav-item nav-link active" href='/users/sign_up'>Register</a>
+			<% end %>
+
+			<% if user_signed_in? %>
+				<a class="nav-item nav-link active" href='/users/sign_out'>Logout</a>
+  			<% else %>
+  				<a class="nav-item nav-link active" href='/users/sign_in'>Login</a>
+			<% end %>
 		</div>
 	</div>
 </nav>
@@ -29,6 +41,9 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
+<div class="container-fluid text-center bg-light">
     <%= yield %>
+</div>
+
   </body>
 </html>
